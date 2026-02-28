@@ -1,0 +1,29 @@
+# Compiled class files
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+.project
+.classpath
+.settings/
+bin/
+out/
+
+# Build
+target/
+build/
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
