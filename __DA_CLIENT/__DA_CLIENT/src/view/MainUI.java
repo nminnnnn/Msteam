@@ -5,7 +5,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import com.formdev.flatlaf.*;
-import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 
 import controller.CardLayout.CardLayout_MainUI;
 import controller.CardLayout.CardLayout_User;
@@ -166,7 +165,7 @@ public class MainUI extends JFrame {
 		CardLayout_MainUI action_cardLayout_MainUI = new CardLayout_MainUI(this);
 		
 		JPanel panel_menu = new JPanel();
-		panel_menu.setBackground(new Color(135, 206, 250));
+		panel_menu.setBackground(new Color(41, 128, 185));
 		panel_menu.setBounds(0, 0, 61, 803);
 		panel_main.add(panel_menu);
 		panel_menu.setLayout(null);

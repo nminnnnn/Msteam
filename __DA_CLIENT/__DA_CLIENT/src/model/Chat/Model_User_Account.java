@@ -58,7 +58,7 @@ public class Model_User_Account {
 			json.put("email", email);
 			json.put("phone", phone);
 			json.put("address", address);
-			json.put("avatar", convertByteArrayToHexString(avatar));
+			json.put("avatar", avatar != null ? convertByteArrayToHexString(avatar) : "");
 			json.put("status", status);
 			return json;
 		} catch (Exception e) {

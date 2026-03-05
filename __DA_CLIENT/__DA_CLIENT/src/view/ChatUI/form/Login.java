@@ -21,9 +21,6 @@ import view.ChatUI.swing.PanelSlide;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
-
-import io.socket.client.Ack;
 import model.Chat.Model_Message;
 import model.Chat.Model_Register;
 import model.Chat.Model_User_Account;
@@ -40,9 +37,10 @@ public class Login extends JPanel {
     	setSize(1554, 850);
         
     	slide = new PanelSlide();
-    	
-        slide.setBackground(new java.awt.Color(255, 255, 255));
-//        slide.setBackground(new java.awt.Color(200, 200, 200));
+        slide.setBackground(new Color(255, 255, 255));
+        slide.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(220, 230, 240), 1),
+            BorderFactory.createEmptyBorder(16, 16, 16, 16)));
     	
     	GroupLayout groupLayout = new GroupLayout(this);
     	groupLayout.setHorizontalGroup(

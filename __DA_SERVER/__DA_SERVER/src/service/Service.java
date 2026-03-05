@@ -174,10 +174,13 @@ public class Service {
     	    	if(jsonData.getString("type").equals("register")) {
     	            String userName = jsonData.getString("userName");
     	            String password = jsonData.getString("password");
-//    	            textArea.append("User has Register :" + userName + " Pass :" + password + "\n");
     	            Model_Register register = new Model_Register(userName, password);
     	            Model_Message message = serviceUser.register(register);
-    	            broadcast(client.getUserId(), message.toJsonObject("register"));
+    	            JSONObject jsonResponse = message.toJsonObject("register");
+    	            if (message.isAction()) {
+    	            	jsonResponse.put("user_Id", serviceUser.getLastRegisteredUserId());
+    	            }
+    	            broadcast(client.getUserId(), jsonResponse);
     	            if(message.isAction()) {
                         main.getBody().getLog().logs.add(new ItemLog(userName, "Register successfully!"));
                         main.getBody().refresh();
@@ -192,6 +195,9 @@ public class Service {
     	    	else if(jsonData.getString("type").equals("registerInfo")) {
     	    		Model_User_Account user = new Model_User_Account(jsonData);
     	    		serviceUser.registerInfo(user);
+    	    		main.getBody().getLog().logs.add(new ItemLog(user.getUserName(), "Đã cập nhật thông tin tài khoản"));
+    	    		main.getBody().refresh();
+    	    		main.getBody().showPage(Body.currentPage);
     	    	}
     	    	else if(jsonData.getString("type").equals("updateInfo")) {
 //    	    		textArea.append("UPDATE INFO :" + jsonData + "\n");

@@ -50,6 +50,10 @@ public class ServiceUser {
 		user_Id = 0;
 	}
 
+	public int getLastRegisteredUserId() {
+		return user_Id;
+	}
+
 	public Model_Message register(Model_Register data) {
 		// Check user exit
 		Model_Message message = new Model_Message();
@@ -108,8 +112,9 @@ public class ServiceUser {
 
 	public void registerInfo(Model_User_Account data) {
 		try {
+			int uid = data.getUser_Id() > 0 ? data.getUser_Id() : user_Id;
 			PreparedStatement p = con.prepareStatement(INSERT_USER_ACCOUNT);
-			p.setInt(1, user_Id);
+			p.setInt(1, uid);
 			p.setString(2, data.getUserName());
 			p.setString(3, data.getFullName());
 			p.setString(4, data.getEmail());
@@ -216,7 +221,10 @@ public class ServiceUser {
 				String phone = r.getString(5);
 				String address = r.getString(6);
 				Blob blob = r.getBlob(7);
-				byte[] avatar = blob.getBytes(1, (int) blob.length());
+				byte[] avatar = new byte[0];
+				if (blob != null && blob.length() > 0) {
+					avatar = blob.getBytes(1, (int) blob.length());
+				}
 				boolean status = false;
 				if (isActive(userID + "")) {
 					status = true;
@@ -268,8 +276,10 @@ public class ServiceUser {
 				String phone = r.getString(5);
 				String address = r.getString(6);
 				Blob blob = r.getBlob(7);
-				byte[] avatar = blob.getBytes(1, (int) blob.length());
-
+				byte[] avatar = new byte[0];
+				if (blob != null && blob.length() > 0) {
+					avatar = blob.getBytes(1, (int) blob.length());
+				}
 				list.add(new Model_User_Account(userID, userName, fullName, email, phone, address, avatar, true));
 			}
 			r.close();

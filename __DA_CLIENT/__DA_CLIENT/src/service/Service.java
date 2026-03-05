@@ -82,6 +82,7 @@ public class Service {
     private InputStream in_image;
     private OutputStream out_image;
 	private Model_Message model_message;
+	private int lastRegisteredUserId;
 	private Login login;
 	private MainUI main;
 	public volatile boolean on_mic = true;
@@ -202,7 +203,10 @@ public class Service {
 	    	if(jsonData.getString("type").equals("register")) {
 	            String message = jsonData.getString("message");
 	            boolean action = jsonData.getBoolean("action");
-	            model_message = new Model_Message(action, message);	 
+	            model_message = new Model_Message(action, message);
+	            if (action && jsonData.has("user_Id")) {
+	            	lastRegisteredUserId = jsonData.getInt("user_Id");
+	            }
 	            Service.getInstance().getMain().getLogin().getRegister().checkRegister();      
 	    	}
 	    	else if(jsonData.getString("type").equals("login")) {
@@ -994,6 +998,10 @@ public class Service {
 
 	public Model_Message getModel_message() {
 		return model_message;
+	}
+
+	public int getLastRegisteredUserId() {
+		return lastRegisteredUserId;
 	}
 
 	public Login getLogin() {

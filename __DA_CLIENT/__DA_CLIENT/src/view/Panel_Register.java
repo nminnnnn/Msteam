@@ -34,9 +34,15 @@ public class Panel_Register extends JPanel{
 	
 	private byte[] image;
 	private JDialog dialog;
+	private int user_Id;
 
 	public Panel_Register(JDialog dialog, String userName) {
+		this(dialog, userName, 0);
+	}
+
+	public Panel_Register(JDialog dialog, String userName, int user_Id) {
 		this.dialog = dialog;
+		this.user_Id = user_Id > 0 ? user_Id : 999;
 		setSize(1390, 585);
 		setLayout(null);
 		
@@ -134,7 +140,7 @@ public class Panel_Register extends JPanel{
 				if(image == null) {
 					System.out.println("Ảnh chưa được chọn!");
 				}
-				Model_User_Account user = new Model_User_Account(999, tf_user_TenTaiKhoan.getText(), tf_user_HoVaTen.getText(), tf_user_email.getText(), tf_user_sdt.getText(), ta_DiaChi.getText(), image, true);
+				Model_User_Account user = new Model_User_Account(user_Id, tf_user_TenTaiKhoan.getText(), tf_user_HoVaTen.getText(), tf_user_email.getText(), tf_user_sdt.getText(), ta_DiaChi.getText(), image, true);
 				System.out.println(user.toString());
 				Service.getInstance().registerInfo(user.toJsonObject("registerInfo"));
 				dialog.dispose();

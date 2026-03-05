@@ -57,16 +57,18 @@ public class P_Register extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel3.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new Color(252, 253, 255));
 
-        lbTitle.setFont(new Font("Segoe UI", Font.BOLD, 40)); // NOI18N
-        lbTitle.setForeground(new java.awt.Color(87, 87, 87));
+        lbTitle.setFont(new Font("Segoe UI", Font.BOLD, 36));
+        lbTitle.setForeground(new Color(41, 128, 185));
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Register");
+        lbTitle.setText("Đăng ký");
 
-        jLabel1.setText("User Name");
+        jLabel1.setText("Tên đăng nhập");
+        jLabel1.setForeground(new Color(70, 80, 90));
 
-        jLabel2.setText("Password");
+        jLabel2.setText("Mật khẩu");
+        jLabel2.setForeground(new Color(70, 80, 90));
 
 //        cmdRegister.setText("Register");
         cmdRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -75,9 +77,9 @@ public class P_Register extends javax.swing.JPanel {
             }
         });
 
-        cmdBackLogin.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16)); // NOI18N
-        cmdBackLogin.setForeground(new java.awt.Color(15, 128, 206));
-        cmdBackLogin.setText("Back Login");
+        cmdBackLogin.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        cmdBackLogin.setForeground(new Color(41, 128, 185));
+        cmdBackLogin.setText("← Quay lại đăng nhập");
         cmdBackLogin.setContentAreaFilled(false);
         cmdBackLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmdBackLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +88,8 @@ public class P_Register extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Confirm Password");
+        jLabel3.setText("Xác nhận mật khẩu");
+        jLabel3.setForeground(new Color(70, 80, 90));
         
         lbError = new JLabel("");
         lbError.setFont(new Font("Segoe UI Symbol", Font.BOLD, 18));
@@ -179,7 +182,8 @@ public class P_Register extends javax.swing.JPanel {
         	lbError.setForeground(Color.green);
             
         	JDialog dialog = new JDialog();
-        	Panel_Register register = new Panel_Register(dialog, txtUser.getText());
+        	int user_Id = Service.getInstance().getLastRegisteredUserId();
+        	Panel_Register register = new Panel_Register(dialog, txtUser.getText(), user_Id);
     		dialog.getContentPane().setLayout(new GridLayout(1,1));
     		dialog.setSize(1400, 620);
 //    		dialog.setUndecorated(true);

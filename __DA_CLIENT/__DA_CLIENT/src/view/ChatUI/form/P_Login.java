@@ -46,16 +46,18 @@ public class P_Login extends JPanel{
         cmdRegister = new javax.swing.JButton();
         cmdRegister.setContentAreaFilled(false);
 
-        setBackground(new Color(255, 255, 255));
+        setBackground(new Color(252, 253, 255));
 
-        lbTitle.setFont(new Font("Segoe UI", Font.BOLD, 40)); // NOI18N
-        lbTitle.setForeground(new java.awt.Color(87, 87, 87));
+        lbTitle.setFont(new Font("Segoe UI", Font.BOLD, 36));
+        lbTitle.setForeground(new Color(41, 128, 185));
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Login");
+        lbTitle.setText("Đăng nhập");
 
-        jLabel1.setText("User Name");
+        jLabel1.setText("Tên đăng nhập");
+        jLabel1.setForeground(new Color(70, 80, 90));
 
-        jLabel2.setText("Password");
+        jLabel2.setText("Mật khẩu");
+        jLabel2.setForeground(new Color(70, 80, 90));
 
 //        cmdLogin.setText("Login");
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -64,9 +66,9 @@ public class P_Login extends JPanel{
             }
         });
 
-        cmdRegister.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16)); // NOI18N
-        cmdRegister.setForeground(new java.awt.Color(15, 128, 206));
-        cmdRegister.setText("Register");
+        cmdRegister.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        cmdRegister.setForeground(new Color(41, 128, 185));
+        cmdRegister.setText("Chưa có tài khoản? Đăng ký");
         cmdRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmdRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
