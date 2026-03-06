@@ -56,6 +56,9 @@ public class Body extends JPanel{
 		
 		log = new Log();
 		add(log, "log");
+		
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public void showPage(String page) {

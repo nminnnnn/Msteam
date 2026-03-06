@@ -34,14 +34,15 @@ public class Model_User_Account {
     public Model_User_Account(Object json) {
         JSONObject obj = (JSONObject) json;
         try {
-            user_Id = obj.getInt("user_Id");
-            userName = obj.getString("userName");
-            fullName = obj.getString("fullName");
-            email = obj.getString("email");
-            phone = obj.getString("phone");
-            address = obj.getString("address");
-            avatar = convertHexStringToByteArray(obj.getString("avatar"));
-            status = obj.getBoolean("status");
+            user_Id = obj.optInt("user_Id", 0);
+            userName = obj.optString("userName", "");
+            fullName = obj.optString("fullName", "");
+            email = obj.optString("email", "");
+            phone = obj.optString("phone", "");
+            address = obj.optString("address", "");
+            String av = obj.optString("avatar", "");
+            avatar = (av == null || av.isEmpty()) ? null : convertHexStringToByteArray(av);
+            status = obj.optBoolean("status", true);
         } catch (Exception e) {
             e.printStackTrace();
         }

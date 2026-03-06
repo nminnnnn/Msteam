@@ -183,12 +183,10 @@ public class Service {
     	            broadcast(client.getUserId(), jsonResponse);
     	            if(message.isAction()) {
                         main.getBody().getLog().logs.add(new ItemLog(userName, "Register successfully!"));
-                        main.getBody().refresh();
-                		main.getBody().showPage(Body.currentPage);
+                        SwingUtilities.invokeLater(() -> { main.getBody().refresh(); main.getBody().showPage(Body.currentPage); });
     	            } else {
     	            	main.getBody().getLog().logs.add(new ItemLog(userName, "Register fail!"));
-                        main.getBody().refresh();
-                		main.getBody().showPage(Body.currentPage);
+                        SwingUtilities.invokeLater(() -> { main.getBody().refresh(); main.getBody().showPage(Body.currentPage); });
     	            }
 //    	            textArea.append("check Register :" + message.isAction() + "message:" + message.getMessage() );
     	    	}
@@ -196,8 +194,10 @@ public class Service {
     	    		Model_User_Account user = new Model_User_Account(jsonData);
     	    		serviceUser.registerInfo(user);
     	    		main.getBody().getLog().logs.add(new ItemLog(user.getUserName(), "Đã cập nhật thông tin tài khoản"));
-    	    		main.getBody().refresh();
-    	    		main.getBody().showPage(Body.currentPage);
+    	    		SwingUtilities.invokeLater(() -> {
+    	    			main.getBody().refresh();
+    	    			main.getBody().showPage("userManager");
+    	    		});
     	    	}
     	    	else if(jsonData.getString("type").equals("updateInfo")) {
 //    	    		textArea.append("UPDATE INFO :" + jsonData + "\n");
@@ -205,8 +205,7 @@ public class Service {
     	    		serviceUser.updateInfo(user);
     	    		
     	    		main.getBody().getLog().logs.add(new ItemLog(user.getUserName(), "Update infomation"));
-                    main.getBody().refresh();
-            		main.getBody().showPage(Body.currentPage);
+                    SwingUtilities.invokeLater(() -> { main.getBody().refresh(); main.getBody().showPage(Body.currentPage); });
     	    	}
     			else if(jsonData.getString("type").equals("login")) {
     	            String userName = jsonData.getString("userName");

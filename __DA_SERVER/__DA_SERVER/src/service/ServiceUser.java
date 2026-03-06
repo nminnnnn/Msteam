@@ -78,8 +78,13 @@ public class ServiceUser {
 				p.setString(2, data.getPassword());
 				p.execute();
 				r = p.getGeneratedKeys();
-				r.first();
-				user_Id = r.getInt(1);
+				if (r != null && r.next()) {
+					try {
+						user_Id = r.getInt("User_ID");
+					} catch (Exception e) {
+						user_Id = r.getInt(1);
+					}
+				}
 				r.close();
 				p.close();
 				// Create user account
